@@ -320,13 +320,17 @@
 
       console.log('박람회 고객 DB:', data);
 
-      // TODO: 여기에 Supabase, n8n Webhook, Google Sheet API 연결 가능
-      // 예시:
-      // await fetch('여기에_n8n_webhook_url', {
-      //   method: 'POST',
-      //   headers: { 'Content-Type': 'application/json' },
-      //   body: JSON.stringify(data)
-      // });
+      const WEBHOOK_URL = 'https://actorjoon0001.app.n8n.cloud/webhook/d1f9c787-817d-4dd1-b315-a66f2cf85e22';
+
+      try {
+        await fetch(WEBHOOK_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data)
+        });
+      } catch (err) {
+        console.error('웹훅 전송 실패:', err);
+      }
 
       form.style.display = 'none';
       successBox.style.display = 'block';
