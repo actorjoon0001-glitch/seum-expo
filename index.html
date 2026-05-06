@@ -413,6 +413,19 @@
       font-size: 12px;
       color: #888;
     }
+    .reset-btn {
+      margin-top: 16px;
+      width: 100%;
+      border: 2px solid #6a1b8c;
+      background: #fff;
+      color: #6a1b8c;
+      border-radius: 14px;
+      padding: 16px;
+      font-size: 16px;
+      font-weight: 800;
+      cursor: pointer;
+    }
+    .reset-btn:active { transform: scale(0.99); }
 
     .error-box {
       display: none;
@@ -588,6 +601,7 @@
           <button id="giftBtn" type="button" class="gift-btn">사은품 수령하기</button>
           <div id="giftHint" class="gift-hint">현장 직원이 확인 후 위 버튼을 눌러주세요.</div>
           <div id="giftTime" class="gift-time"></div>
+          <button id="resetBtn" type="button" class="reset-btn" style="display:none;">새 고객 등록하기</button>
         </div>
 
         <div class="success-gift">
@@ -633,6 +647,7 @@
     const giftHint   = document.getElementById('giftHint');
     const giftTime   = document.getElementById('giftTime');
     const staffPhone = document.getElementById('staffPhone');
+    const resetBtn   = document.getElementById('resetBtn');
 
     // 마지막 등록 결과 (새로고침 후 복원)
     let currentRecord = null; // { id, token, phone_norm, gift_status, gift_received_at }
@@ -720,11 +735,13 @@
         giftHint.textContent = '사은품 수령이 완료되었습니다.';
         giftTime.textContent = currentRecord.gift_received_at
           ? `처리시간: ${fmtTime(currentRecord.gift_received_at)}` : '';
+        resetBtn.style.display = 'block';
       } else {
         giftBtn.disabled = false;
         giftBtn.textContent = '사은품 수령하기';
         giftHint.textContent = '현장 직원이 확인 후 위 버튼을 눌러주세요.';
         giftTime.textContent = '';
+        resetBtn.style.display = 'none';
       }
     }
 
@@ -886,10 +903,33 @@
       renderGiftZone();
     });
 
+    // ===== 새 고객 등록 (직원이 수령 완료 후 누름) =====
+    resetBtn.addEventListener('click', () => {
+      localStorage.removeItem(STORE_KEY);
+      currentRecord = null;
+      form.reset();
+      successBox.style.display = 'none';
+      hideError();
+      submitBtn.disabled = false;
+      submitBtn.textContent = '혜택 신청하기';
+      form.style.display = 'block';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
     // ===== 새로고침 시 이전 등록 화면 복원 =====
+    //  - 미수령 상태(pending): 화면 유지 → 직원이 마저 처리
+    //  - 수령 완료(completed): 1시간 지나면 자동으로 폼 화면으로 복귀
+    //                          (현장에서 다음 고객이 바로 사용 가능)
     (function restoreOnLoad() {
       const r = loadRecord();
       if (!r || !r.token) return;
+      if (r.gift_status === 'completed' && r.gift_received_at) {
+        const ageMs = Date.now() - new Date(r.gift_received_at).getTime();
+        if (ageMs > 60 * 60 * 1000) {
+          localStorage.removeItem(STORE_KEY);
+          return;
+        }
+      }
       currentRecord = r;
       form.style.display = 'none';
       successBox.style.display = 'block';
