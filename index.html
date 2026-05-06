@@ -368,6 +368,11 @@
     const form = document.getElementById('fairForm');
     const successBox = document.getElementById('successBox');
 
+    if (new URLSearchParams(location.search).get('preview') === 'success') {
+      form.style.display = 'none';
+      successBox.style.display = 'block';
+    }
+
     form.addEventListener('submit', async function (e) {
       e.preventDefault();
 
