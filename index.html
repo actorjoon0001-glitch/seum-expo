@@ -12,7 +12,7 @@
     body {
       margin: 0;
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: #f5f5f5;
+      background: #1a0b3d;
       color: #111;
     }
 
@@ -21,46 +21,166 @@
       margin: 0 auto;
       min-height: 100vh;
       background: #ffffff;
-      padding: 28px 20px 40px;
     }
 
-    .badge {
+    /* ===== Hero (event banner) ===== */
+    .hero {
+      position: relative;
+      padding: 28px 20px 26px;
+      background:
+        radial-gradient(circle at 15% 20%, rgba(255, 90, 180, 0.25), transparent 40%),
+        radial-gradient(circle at 85% 85%, rgba(120, 80, 255, 0.35), transparent 45%),
+        linear-gradient(160deg, #2a1466 0%, #4b1c7a 55%, #6a1b8c 100%);
+      color: #fff;
+      overflow: hidden;
+    }
+
+    .hero::before,
+    .hero::after {
+      content: "";
+      position: absolute;
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      filter: blur(40px);
+      opacity: 0.55;
+      pointer-events: none;
+    }
+    .hero::before { top: -30px; right: -30px; background: #ff3d8a; }
+    .hero::after  { bottom: -40px; left: -30px; background: #6a3dff; }
+
+    .hero-badge {
+      position: relative;
       display: inline-block;
       padding: 6px 12px;
       border-radius: 999px;
-      background: #111;
+      background: rgba(255, 255, 255, 0.15);
+      border: 1px solid rgba(255, 255, 255, 0.35);
       color: #fff;
-      font-size: 13px;
+      font-size: 12px;
       font-weight: 700;
-      margin-bottom: 16px;
+      letter-spacing: 0.3px;
+      margin-bottom: 14px;
+      backdrop-filter: blur(4px);
     }
 
-    h1 {
-      margin: 0 0 10px;
-      font-size: 26px;
-      line-height: 1.25;
-      letter-spacing: -0.5px;
+    .hero-title {
+      position: relative;
+      margin: 0 0 8px;
+      font-size: 30px;
+      line-height: 1.2;
+      font-weight: 900;
+      letter-spacing: -0.8px;
     }
 
-    .sub {
-      margin: 0 0 24px;
+    .hero-title .pop {
+      background: linear-gradient(90deg, #ffd84d 0%, #ff6fc8 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero-lead {
+      position: relative;
+      margin: 0 0 18px;
       font-size: 15px;
-      color: #555;
+      color: rgba(255, 255, 255, 0.85);
       line-height: 1.5;
     }
 
-    .benefit-box {
-      background: #fff7e6;
-      border: 1px solid #ffd28a;
-      border-radius: 16px;
-      padding: 15px;
-      margin-bottom: 24px;
-      font-size: 14px;
-      line-height: 1.6;
+    .hero-lead strong {
+      color: #ffd84d;
+      font-weight: 800;
     }
 
-    .benefit-box strong {
-      color: #c25a00;
+    .hero-grid {
+      position: relative;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    .hero-card {
+      position: relative;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: 14px;
+      padding: 14px 12px 12px;
+      backdrop-filter: blur(6px);
+    }
+
+    .hero-card .num {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, #ff4d8d, #b14dff);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+      margin-bottom: 8px;
+    }
+
+    .hero-card .ct {
+      margin: 0 0 4px;
+      font-size: 12px;
+      color: rgba(255, 255, 255, 0.85);
+      line-height: 1.4;
+    }
+
+    .hero-card .ca {
+      margin: 0;
+      font-size: 17px;
+      font-weight: 900;
+      color: #ffd84d;
+      letter-spacing: -0.3px;
+    }
+
+    .hero-card .cd {
+      margin: 2px 0 0;
+      font-size: 12px;
+      color: #fff;
+      font-weight: 700;
+    }
+
+    .hero-gift {
+      position: relative;
+      margin-top: 14px;
+      padding: 12px 14px;
+      border-radius: 12px;
+      background: linear-gradient(90deg, rgba(255, 216, 77, 0.18), rgba(255, 111, 200, 0.18));
+      border: 1px dashed rgba(255, 216, 77, 0.7);
+      color: #fff;
+      font-size: 13.5px;
+      font-weight: 700;
+      text-align: center;
+      line-height: 1.5;
+    }
+
+    .hero-gift strong {
+      color: #ffd84d;
+      font-weight: 900;
+    }
+
+    /* ===== Form Section ===== */
+    .form-section {
+      padding: 26px 20px 36px;
+      background: #ffffff;
+    }
+
+    .form-title {
+      margin: 0 0 6px;
+      font-size: 20px;
+      font-weight: 900;
+      letter-spacing: -0.4px;
+    }
+
+    .form-sub {
+      margin: 0 0 22px;
+      font-size: 14px;
+      color: #666;
+      line-height: 1.5;
     }
 
     label {
@@ -84,12 +204,13 @@
       font-size: 16px;
       outline: none;
       background: #fff;
+      font-family: inherit;
     }
 
     input:focus,
     select:focus,
     textarea:focus {
-      border-color: #111;
+      border-color: #6a1b8c;
     }
 
     .option-grid {
@@ -120,12 +241,14 @@
       font-weight: 600;
       text-align: center;
       background: #fff;
+      transition: all 0.15s ease;
     }
 
     .option-card input:checked + span {
-      border-color: #111;
-      background: #111;
+      border-color: transparent;
+      background: linear-gradient(135deg, #6a1b8c, #ff4d8d);
       color: #fff;
+      box-shadow: 0 4px 14px rgba(255, 77, 141, 0.35);
     }
 
     .agree {
@@ -148,12 +271,14 @@
       width: 100%;
       border: 0;
       border-radius: 14px;
-      background: #c40000;
+      background: linear-gradient(135deg, #ff4d8d 0%, #b14dff 100%);
       color: #fff;
-      padding: 17px;
+      padding: 18px;
       font-size: 18px;
-      font-weight: 800;
+      font-weight: 900;
       cursor: pointer;
+      letter-spacing: -0.2px;
+      box-shadow: 0 8px 22px rgba(177, 77, 255, 0.35);
     }
 
     button:active {
@@ -168,14 +293,15 @@
       line-height: 1.5;
     }
 
+    /* ===== Success Screen ===== */
     .success {
       display: none;
       margin-top: 20px;
-      padding: 22px 18px;
+      padding: 24px 18px;
       border-radius: 16px;
-      background: #eefaf1;
-      border: 1px solid #b7e4c7;
-      color: #166534;
+      background: linear-gradient(160deg, #fff7fb 0%, #f6efff 100%);
+      border: 1px solid #f0d4ea;
+      color: #2c0a4a;
       font-size: 15px;
       line-height: 1.6;
       text-align: center;
@@ -185,25 +311,30 @@
     .success-title {
       font-size: 17px;
       margin-bottom: 14px;
+      color: #2c0a4a;
     }
 
     .success-gift {
       margin: 14px 0 18px;
-      padding: 12px;
+      padding: 14px;
       border-radius: 12px;
       background: #ffffff;
-      border: 1px dashed #b7e4c7;
-      color: #c25a00;
+      border: 1px dashed #ff8ec3;
+      color: #b1217a;
       font-size: 14px;
       font-weight: 800;
     }
 
+    .success-gift .em {
+      color: #c40000;
+    }
+
     .success-benefits {
       margin-top: 12px;
-      padding: 14px;
+      padding: 16px 14px;
       border-radius: 12px;
       background: #ffffff;
-      border: 1px solid #d6efd9;
+      border: 1px solid #ecdcf2;
       color: #111;
       text-align: left;
       font-weight: 600;
@@ -213,10 +344,10 @@
 
     .success-benefits .b-title {
       display: block;
-      margin-bottom: 8px;
-      color: #166534;
+      margin-bottom: 10px;
+      color: #6a1b8c;
       font-size: 14px;
-      font-weight: 800;
+      font-weight: 900;
       text-align: center;
     }
 
@@ -226,147 +357,194 @@
     }
 
     .success-benefits li {
-      margin-bottom: 4px;
+      margin-bottom: 6px;
     }
 
     .success-benefits .hl {
       color: #c40000;
-      font-weight: 800;
+      font-weight: 900;
     }
   </style>
 </head>
 <body>
   <main class="wrap">
-    <div class="badge">SEUM 박람회 한정</div>
+    <!-- ===== Event Banner Hero ===== -->
+    <section class="hero">
+      <span class="hero-badge">🎉 SEUM 박람회 한정</span>
 
-    <h1>박람회 특별혜택<br />상담 신청</h1>
-    <p class="sub">
-      간단히 신청하시면 담당자가 빠르게 상담을 도와드립니다.
-    </p>
+      <h1 class="hero-title">
+        방문만 해도<br />
+        <span class="pop">혜택 증정!</span>
+      </h1>
 
-    <div class="benefit-box">
-      🎁 <strong>상담 고객 전원 혜택</strong><br />
-      박람회 현장 상담 시 사은품 및 계약 특별혜택을 안내드립니다.
-    </div>
+      <p class="hero-lead">
+        박람회 현장 계약 시 <strong>최대 800만원</strong> 상당 혜택
+      </p>
 
-    <form id="fairForm">
-      <div class="field">
-        <label for="name">성함</label>
-        <input id="name" name="name" type="text" placeholder="홍길동" required />
-      </div>
-
-      <div class="field">
-        <label for="phone">연락처</label>
-        <input id="phone" name="phone" type="tel" placeholder="010-0000-0000" required />
-      </div>
-
-      <div class="field">
-        <label>관심 상품</label>
-        <div class="option-grid">
-          <label class="option-card">
-            <input type="radio" name="product" value="STAY 19RB(이동식 주택)" required />
-            <span>STAY 19RB(이동식 주택)</span>
-          </label>
-          <label class="option-card">
-            <input type="radio" name="product" value="STAY 16GB(이동식 주택)" />
-            <span>STAY 16GB(이동식 주택)</span>
-          </label>
-          <label class="option-card">
-            <input type="radio" name="product" value="CUBE-G 10W(스크린 골프)" />
-            <span>CUBE-G 10W(스크린 골프)</span>
-          </label>
-          <label class="option-card">
-            <input type="radio" name="product" value="FOREST-P 10W(체류형쉼터)" />
-            <span>FOREST-P 10W(체류형쉼터)</span>
-          </label>
+      <div class="hero-grid">
+        <div class="hero-card">
+          <span class="num">01</span>
+          <p class="ct">19평 모델 계약 시</p>
+          <p class="ca">800만원</p>
+          <p class="cd">가전 패키지</p>
+        </div>
+        <div class="hero-card">
+          <span class="num">02</span>
+          <p class="ct">16평 모델 계약 시</p>
+          <p class="ca">500만원</p>
+          <p class="cd">가전 패키지</p>
+        </div>
+        <div class="hero-card">
+          <span class="num">03</span>
+          <p class="ct">패시브 목조 모델</p>
+          <p class="ca">500만원</p>
+          <p class="cd">계약 혜택</p>
+        </div>
+        <div class="hero-card">
+          <span class="num">04</span>
+          <p class="ct">노래방·영화·스크린골프</p>
+          <p class="ca">600만원</p>
+          <p class="cd">계약 혜택</p>
         </div>
       </div>
 
-      <div class="field">
-        <label>건축 예정 시기</label>
-        <div class="option-grid">
-          <label class="option-card">
-            <input type="radio" name="period" value="1개월 이내" required />
-            <span>1개월 이내</span>
-          </label>
-          <label class="option-card">
-            <input type="radio" name="period" value="3개월 이내" />
-            <span>3개월 이내</span>
-          </label>
-          <label class="option-card">
-            <input type="radio" name="period" value="6개월 이내" />
-            <span>6개월 이내</span>
-          </label>
-          <label class="option-card">
-            <input type="radio" name="period" value="미정" />
-            <span>미정</span>
-          </label>
+      <div class="hero-gift">
+        🎁 상담 신청 고객 전원<br />
+        <strong>2만원 상당 구름깔창 증정</strong>
+      </div>
+    </section>
+
+    <!-- ===== Form ===== -->
+    <section class="form-section">
+      <h2 class="form-title">박람회 특별혜택 상담 신청</h2>
+      <p class="form-sub">
+        간단히 신청하시면 담당자가 빠르게 상담을 도와드립니다.
+      </p>
+
+      <form id="fairForm">
+        <div class="field">
+          <label for="name">성함</label>
+          <input id="name" name="name" type="text" placeholder="홍길동" required />
+        </div>
+
+        <div class="field">
+          <label for="phone">연락처</label>
+          <input id="phone" name="phone" type="tel" placeholder="010-0000-0000" required />
+        </div>
+
+        <div class="field">
+          <label>관심 상품</label>
+          <div class="option-grid">
+            <label class="option-card">
+              <input type="radio" name="product" value="STAY 19RB(19평 이동식 주택)" required />
+              <span>STAY 19RB(19평 이동식 주택)</span>
+            </label>
+            <label class="option-card">
+              <input type="radio" name="product" value="STAY 16GB(16평 이동식 주택)" />
+              <span>STAY 16GB(16평 이동식 주택)</span>
+            </label>
+            <label class="option-card">
+              <input type="radio" name="product" value="CUBE-G 10W(스크린 골프)" />
+              <span>CUBE-G 10W(스크린 골프)</span>
+            </label>
+            <label class="option-card">
+              <input type="radio" name="product" value="FOREST-P 10W(체류형쉼터)" />
+              <span>FOREST-P 10W(체류형쉼터)</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="field">
+          <label>건축 예정 시기</label>
+          <div class="option-grid">
+            <label class="option-card">
+              <input type="radio" name="period" value="1개월 이내" required />
+              <span>1개월 이내</span>
+            </label>
+            <label class="option-card">
+              <input type="radio" name="period" value="3개월 이내" />
+              <span>3개월 이내</span>
+            </label>
+            <label class="option-card">
+              <input type="radio" name="period" value="6개월 이내" />
+              <span>6개월 이내</span>
+            </label>
+            <label class="option-card">
+              <input type="radio" name="period" value="미정" />
+              <span>미정</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="field">
+          <label>토지 보유 여부</label>
+          <div class="option-grid">
+            <label class="option-card">
+              <input type="radio" name="land" value="있음" required />
+              <span>있음</span>
+            </label>
+            <label class="option-card">
+              <input type="radio" name="land" value="없음" />
+              <span>없음</span>
+            </label>
+            <label class="option-card">
+              <input type="radio" name="land" value="매입 예정" />
+              <span>매입 예정</span>
+            </label>
+            <label class="option-card">
+              <input type="radio" name="land" value="상담 필요" />
+              <span>상담 필요</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="memo">메모 <small style="font-weight:400;color:#777;">선택</small></label>
+          <textarea id="memo" name="memo" rows="3" placeholder="담당 영업사원이 있다면 작성해 주세요."></textarea>
+        </div>
+
+        <label class="agree">
+          <input type="checkbox" name="agree" required />
+          <span>개인정보 수집 및 상담 연락에 동의합니다. 입력하신 정보는 상담 안내 목적으로만 사용됩니다.</span>
+        </label>
+
+        <button type="submit">혜택 신청하기</button>
+      </form>
+
+      <div id="successBox" class="success">
+        <div class="success-title">
+          신청이 완료되었습니다.<br />현장 담당자가 곧 상담을 도와드리겠습니다.
+        </div>
+
+        <div class="success-gift">
+          🎁 DB 작성 고객 <span class="em">2만원 상당 구름깔창</span> 증정
+        </div>
+
+        <div class="success-benefits">
+          <span class="b-title">📌 박람회 계약 특별혜택</span>
+          <ul>
+            <li>19평 모델 계약 시 <span class="hl">800만원 상당 가전 패키지</span></li>
+            <li>16평 모델 계약 시 <span class="hl">500만원 상당 가전 패키지</span></li>
+            <li>패시브 목조 모델 계약 시 <span class="hl">500만원 상당 혜택</span></li>
+            <li>노래방·영화·스크린 골프 모델 계약 시 <span class="hl">600만원 상당 혜택</span></li>
+          </ul>
         </div>
       </div>
 
-      <div class="field">
-        <label>토지 보유 여부</label>
-        <div class="option-grid">
-          <label class="option-card">
-            <input type="radio" name="land" value="있음" required />
-            <span>있음</span>
-          </label>
-          <label class="option-card">
-            <input type="radio" name="land" value="없음" />
-            <span>없음</span>
-          </label>
-          <label class="option-card">
-            <input type="radio" name="land" value="매입 예정" />
-            <span>매입 예정</span>
-          </label>
-          <label class="option-card">
-            <input type="radio" name="land" value="상담 필요" />
-            <span>상담 필요</span>
-          </label>
-        </div>
-      </div>
-
-      <div class="field">
-        <label for="memo">메모 <small style="font-weight:400;color:#777;">선택</small></label>
-        <textarea id="memo" name="memo" rows="3" placeholder="담당 영업사원이 있다면 작성해 주세요."></textarea>
-      </div>
-
-      <label class="agree">
-        <input type="checkbox" name="agree" required />
-        <span>개인정보 수집 및 상담 연락에 동의합니다. 입력하신 정보는 상담 안내 목적으로만 사용됩니다.</span>
-      </label>
-
-      <button type="submit">혜택 신청하기</button>
-    </form>
-
-    <div id="successBox" class="success">
-      <div class="success-title">
-        신청이 완료되었습니다.<br />현장 담당자가 곧 상담을 도와드리겠습니다.
-      </div>
-
-      <div class="success-gift">
-        🎁 DB 작성 고객 <span style="color:#c40000;">2만원 상당 구름깔창</span> 증정
-      </div>
-
-      <div class="success-benefits">
-        <span class="b-title">📌 박람회 계약 특별혜택</span>
-        <ul>
-          <li>19평 모델 계약 시 <span class="hl">800만원 상당 가전 패키지</span></li>
-          <li>16평 모델 계약 시 <span class="hl">500만원 상당 가전 패키지</span></li>
-          <li>패시브 목조 모델 계약 시 <span class="hl">500만원 상당 혜택</span></li>
-          <li>노래방·영화·스크린 골프 모델 계약 시 <span class="hl">600만원 상당 혜택</span></li>
-        </ul>
-      </div>
-    </div>
-
-    <p class="notice">
-      ※ 정확한 상담을 위해 연락처를 정확히 입력해주세요.
-    </p>
+      <p class="notice">
+        ※ 정확한 상담을 위해 연락처를 정확히 입력해주세요.
+      </p>
+    </section>
   </main>
 
   <script>
     const form = document.getElementById('fairForm');
     const successBox = document.getElementById('successBox');
+
+    if (new URLSearchParams(location.search).get('preview') === 'success') {
+      form.style.display = 'none';
+      successBox.style.display = 'block';
+    }
 
     form.addEventListener('submit', async function (e) {
       e.preventDefault();
