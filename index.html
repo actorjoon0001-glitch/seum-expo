@@ -171,7 +171,7 @@
     .success {
       display: none;
       margin-top: 20px;
-      padding: 18px;
+      padding: 22px 18px;
       border-radius: 16px;
       background: #eefaf1;
       border: 1px solid #b7e4c7;
@@ -180,6 +180,58 @@
       line-height: 1.6;
       text-align: center;
       font-weight: 700;
+    }
+
+    .success-title {
+      font-size: 17px;
+      margin-bottom: 14px;
+    }
+
+    .success-gift {
+      margin: 14px 0 18px;
+      padding: 12px;
+      border-radius: 12px;
+      background: #ffffff;
+      border: 1px dashed #b7e4c7;
+      color: #c25a00;
+      font-size: 14px;
+      font-weight: 800;
+    }
+
+    .success-benefits {
+      margin-top: 12px;
+      padding: 14px;
+      border-radius: 12px;
+      background: #ffffff;
+      border: 1px solid #d6efd9;
+      color: #111;
+      text-align: left;
+      font-weight: 600;
+      font-size: 13.5px;
+      line-height: 1.7;
+    }
+
+    .success-benefits .b-title {
+      display: block;
+      margin-bottom: 8px;
+      color: #166534;
+      font-size: 14px;
+      font-weight: 800;
+      text-align: center;
+    }
+
+    .success-benefits ul {
+      margin: 0;
+      padding-left: 18px;
+    }
+
+    .success-benefits li {
+      margin-bottom: 4px;
+    }
+
+    .success-benefits .hl {
+      color: #c40000;
+      font-weight: 800;
     }
   </style>
 </head>
@@ -288,7 +340,23 @@
     </form>
 
     <div id="successBox" class="success">
-      신청이 완료되었습니다.<br />현장 담당자가 곧 상담을 도와드리겠습니다.
+      <div class="success-title">
+        신청이 완료되었습니다.<br />현장 담당자가 곧 상담을 도와드리겠습니다.
+      </div>
+
+      <div class="success-gift">
+        🎁 DB 작성 고객 <span style="color:#c40000;">2만원 상당 구름깔창</span> 증정
+      </div>
+
+      <div class="success-benefits">
+        <span class="b-title">📌 박람회 계약 특별혜택</span>
+        <ul>
+          <li>19평 모델 계약 시 <span class="hl">800만원 상당 가전 패키지</span></li>
+          <li>16평 모델 계약 시 <span class="hl">500만원 상당 가전 패키지</span></li>
+          <li>패시브 목조 모델 계약 시 <span class="hl">500만원 상당 혜택</span></li>
+          <li>노래방·영화·스크린 골프 모델 계약 시 <span class="hl">600만원 상당 혜택</span></li>
+        </ul>
+      </div>
     </div>
 
     <p class="notice">
