@@ -1,0 +1,969 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>세움 박람회 특별혜택 신청</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #1a0b3d;
+      color: #111;
+    }
+
+    .wrap {
+      max-width: 480px;
+      margin: 0 auto;
+      min-height: 100vh;
+      background: #ffffff;
+    }
+
+    /* ===== Hero (event banner) ===== */
+    .hero {
+      position: relative;
+      padding: 28px 20px 26px;
+      background:
+        radial-gradient(circle at 15% 20%, rgba(255, 90, 180, 0.25), transparent 40%),
+        radial-gradient(circle at 85% 85%, rgba(120, 80, 255, 0.35), transparent 45%),
+        linear-gradient(160deg, #2a1466 0%, #4b1c7a 55%, #6a1b8c 100%);
+      color: #fff;
+      overflow: hidden;
+    }
+
+    .hero::before,
+    .hero::after {
+      content: "";
+      position: absolute;
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      filter: blur(40px);
+      opacity: 0.55;
+      pointer-events: none;
+    }
+    .hero::before { top: -30px; right: -30px; background: #ff3d8a; }
+    .hero::after  { bottom: -40px; left: -30px; background: #6a3dff; }
+
+    .hero-badge {
+      position: relative;
+      display: inline-block;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.15);
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      color: #fff;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.3px;
+      margin-bottom: 14px;
+      backdrop-filter: blur(4px);
+    }
+
+    .hero-title {
+      position: relative;
+      margin: 0 0 8px;
+      font-size: 30px;
+      line-height: 1.2;
+      font-weight: 900;
+      letter-spacing: -0.8px;
+    }
+
+    .hero-title .pop {
+      background: linear-gradient(90deg, #ffd84d 0%, #ff6fc8 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero-lead {
+      position: relative;
+      margin: 0 0 18px;
+      font-size: 15px;
+      color: rgba(255, 255, 255, 0.85);
+      line-height: 1.5;
+    }
+
+    .hero-lead strong {
+      color: #ffd84d;
+      font-weight: 800;
+    }
+
+    .hero-grid {
+      position: relative;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    .hero-card {
+      position: relative;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: 14px;
+      padding: 14px 12px 12px;
+      backdrop-filter: blur(6px);
+    }
+
+    .hero-card .num {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, #ff4d8d, #b14dff);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+      margin-bottom: 8px;
+    }
+
+    .hero-card .ct {
+      margin: 0 0 4px;
+      font-size: 12px;
+      color: rgba(255, 255, 255, 0.85);
+      line-height: 1.4;
+    }
+
+    .hero-card .ca {
+      margin: 0;
+      font-size: 17px;
+      font-weight: 900;
+      color: #ffd84d;
+      letter-spacing: -0.3px;
+    }
+
+    .hero-card .cd {
+      margin: 2px 0 0;
+      font-size: 12px;
+      color: #fff;
+      font-weight: 700;
+    }
+
+    .hero-gift {
+      position: relative;
+      margin-top: 14px;
+      padding: 12px 14px;
+      border-radius: 12px;
+      background: linear-gradient(90deg, rgba(255, 216, 77, 0.18), rgba(255, 111, 200, 0.18));
+      border: 1px dashed rgba(255, 216, 77, 0.7);
+      color: #fff;
+      font-size: 13.5px;
+      font-weight: 700;
+      text-align: center;
+      line-height: 1.5;
+    }
+
+    .hero-gift strong {
+      color: #ffd84d;
+      font-weight: 900;
+    }
+
+    /* ===== Form Section ===== */
+    .form-section {
+      padding: 26px 20px 36px;
+      background: #ffffff;
+    }
+
+    .form-title {
+      margin: 0 0 6px;
+      font-size: 20px;
+      font-weight: 900;
+      letter-spacing: -0.4px;
+    }
+
+    .form-sub {
+      margin: 0 0 22px;
+      font-size: 14px;
+      color: #666;
+      line-height: 1.5;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 15px;
+      font-weight: 700;
+    }
+
+    .field {
+      margin-bottom: 20px;
+    }
+
+    input,
+    select,
+    textarea {
+      width: 100%;
+      border: 1px solid #ddd;
+      border-radius: 12px;
+      padding: 15px 14px;
+      font-size: 16px;
+      outline: none;
+      background: #fff;
+      font-family: inherit;
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+      border-color: #6a1b8c;
+    }
+
+    .option-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .option-card {
+      position: relative;
+    }
+
+    .option-card input {
+      position: absolute;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .option-card span {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 50px;
+      padding: 12px;
+      border: 1px solid #ddd;
+      border-radius: 12px;
+      font-size: 14px;
+      font-weight: 600;
+      text-align: center;
+      background: #fff;
+      transition: all 0.15s ease;
+    }
+
+    .option-card input:checked + span {
+      border-color: transparent;
+      background: linear-gradient(135deg, #6a1b8c, #ff4d8d);
+      color: #fff;
+      box-shadow: 0 4px 14px rgba(255, 77, 141, 0.35);
+    }
+
+    .agree {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      margin: 24px 0;
+      font-size: 13px;
+      color: #555;
+      line-height: 1.5;
+    }
+
+    .agree input {
+      width: 18px;
+      height: 18px;
+      margin-top: 2px;
+    }
+
+    button {
+      width: 100%;
+      border: 0;
+      border-radius: 14px;
+      background: linear-gradient(135deg, #ff4d8d 0%, #b14dff 100%);
+      color: #fff;
+      padding: 18px;
+      font-size: 18px;
+      font-weight: 900;
+      cursor: pointer;
+      letter-spacing: -0.2px;
+      box-shadow: 0 8px 22px rgba(177, 77, 255, 0.35);
+    }
+
+    button:active {
+      transform: scale(0.99);
+    }
+
+    .notice {
+      margin-top: 14px;
+      font-size: 12px;
+      color: #777;
+      text-align: center;
+      line-height: 1.5;
+    }
+
+    /* ===== Success Screen ===== */
+    .success {
+      display: none;
+      margin-top: 20px;
+      padding: 24px 18px;
+      border-radius: 16px;
+      background: linear-gradient(160deg, #fff7fb 0%, #f6efff 100%);
+      border: 1px solid #f0d4ea;
+      color: #2c0a4a;
+      font-size: 15px;
+      line-height: 1.6;
+      text-align: center;
+      font-weight: 700;
+    }
+
+    .success-title {
+      font-size: 17px;
+      margin-bottom: 14px;
+      color: #2c0a4a;
+    }
+
+    .success-gift {
+      margin: 14px 0 18px;
+      padding: 14px;
+      border-radius: 12px;
+      background: #ffffff;
+      border: 1px dashed #ff8ec3;
+      color: #b1217a;
+      font-size: 14px;
+      font-weight: 800;
+    }
+
+    .success-gift .em {
+      color: #c40000;
+    }
+
+    .success-benefits {
+      margin-top: 12px;
+      padding: 16px 14px;
+      border-radius: 12px;
+      background: #ffffff;
+      border: 1px solid #ecdcf2;
+      color: #111;
+      text-align: left;
+      font-weight: 600;
+      font-size: 13.5px;
+      line-height: 1.7;
+    }
+
+    .success-benefits .b-title {
+      display: block;
+      margin-bottom: 10px;
+      color: #6a1b8c;
+      font-size: 14px;
+      font-weight: 900;
+      text-align: center;
+    }
+
+    .success-benefits ul {
+      margin: 0;
+      padding-left: 18px;
+    }
+
+    .success-benefits li {
+      margin-bottom: 6px;
+    }
+
+    .success-benefits .hl {
+      color: #c40000;
+      font-weight: 900;
+    }
+
+    /* ===== 사은품 수령 버튼 (현장 직원이 클릭) ===== */
+    .gift-zone {
+      margin-top: 20px;
+      padding: 20px 16px;
+      border-radius: 16px;
+      background: #fff;
+      border: 2px solid #6a1b8c;
+      text-align: center;
+    }
+    .gift-zone .phone {
+      font-size: 22px;
+      font-weight: 900;
+      letter-spacing: 1px;
+      color: #111;
+      margin-bottom: 14px;
+    }
+    .gift-btn {
+      width: 100%;
+      border: 0;
+      border-radius: 16px;
+      padding: 22px;
+      font-size: 20px;
+      font-weight: 900;
+      cursor: pointer;
+      background: linear-gradient(135deg, #ff4d8d 0%, #b14dff 100%);
+      color: #fff;
+      box-shadow: 0 8px 22px rgba(177, 77, 255, 0.35);
+      letter-spacing: -0.2px;
+    }
+    .gift-btn:active { transform: scale(0.99); }
+    .gift-btn[disabled] {
+      background: #1f7a1f;
+      box-shadow: none;
+      cursor: not-allowed;
+      opacity: 1;
+    }
+    .gift-hint {
+      margin-top: 10px;
+      font-size: 13px;
+      color: #555;
+      font-weight: 600;
+      line-height: 1.5;
+    }
+    .gift-time {
+      margin-top: 6px;
+      font-size: 12px;
+      color: #888;
+    }
+    .reset-btn {
+      margin-top: 16px;
+      width: 100%;
+      border: 2px solid #6a1b8c;
+      background: #fff;
+      color: #6a1b8c;
+      border-radius: 14px;
+      padding: 16px;
+      font-size: 16px;
+      font-weight: 800;
+      cursor: pointer;
+    }
+    .reset-btn:active { transform: scale(0.99); }
+
+    .error-box {
+      display: none;
+      margin-top: 14px;
+      padding: 18px 16px;
+      border-radius: 12px;
+      background: #ffe1e1;
+      color: #b00020;
+      font-size: 16px;
+      font-weight: 800;
+      text-align: center;
+      border: 1px solid #b00020;
+      line-height: 1.5;
+    }
+
+    button[disabled] { opacity: 0.55; cursor: not-allowed; }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 14px;
+      background: linear-gradient(135deg, #2a1466, #4b1c7a);
+      color: #fff;
+    }
+    .topbar .back {
+      display: inline-flex;
+      align-items: center;
+      padding: 7px 12px;
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.15);
+      color: #fff;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 700;
+    }
+    .topbar .back:active { transform: scale(0.97); }
+    .topbar .title { font-size: 14px; font-weight: 800; letter-spacing: -0.2px; }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <div class="topbar">
+      <a href="index.html" class="back">‹ 메뉴</a>
+      <div class="title">박람회 특별혜택 신청</div>
+    </div>
+    <!-- ===== Event Banner Hero ===== -->
+    <section class="hero">
+      <span class="hero-badge">🎉 SEUM 박람회 한정</span>
+
+      <h1 class="hero-title">
+        방문만 해도<br />
+        <span class="pop">혜택 증정!</span>
+      </h1>
+
+      <p class="hero-lead">
+        박람회 현장 계약 시 <strong>최대 800만원</strong> 상당 혜택
+      </p>
+
+      <div class="hero-grid">
+        <div class="hero-card">
+          <span class="num">01</span>
+          <p class="ct">19평 모델 계약 시</p>
+          <p class="ca">800만원</p>
+          <p class="cd">가전 패키지</p>
+        </div>
+        <div class="hero-card">
+          <span class="num">02</span>
+          <p class="ct">16평 모델 계약 시</p>
+          <p class="ca">500만원</p>
+          <p class="cd">가전 패키지</p>
+        </div>
+        <div class="hero-card">
+          <span class="num">03</span>
+          <p class="ct">패시브 목조 모델</p>
+          <p class="ca">500만원</p>
+          <p class="cd">계약 혜택</p>
+        </div>
+        <div class="hero-card">
+          <span class="num">04</span>
+          <p class="ct">노래방·영화·스크린골프</p>
+          <p class="ca">600만원</p>
+          <p class="cd">계약 혜택</p>
+        </div>
+      </div>
+
+      <div class="hero-gift">
+        🎁 상담 신청 고객 전원<br />
+        <strong>2만원 상당 구름깔창 증정</strong>
+      </div>
+    </section>
+
+    <!-- ===== Form ===== -->
+    <section class="form-section">
+      <h2 class="form-title">박람회 특별혜택 상담 신청</h2>
+      <p class="form-sub">
+        간단히 신청하시면 담당자가 빠르게 상담을 도와드립니다.
+      </p>
+
+      <form id="fairForm">
+        <div class="field">
+          <label for="name">성함</label>
+          <input id="name" name="name" type="text" placeholder="홍길동" required />
+        </div>
+
+        <div class="field">
+          <label for="phone">연락처</label>
+          <input id="phone" name="phone" type="tel" placeholder="010-0000-0000" required />
+        </div>
+
+        <div class="field">
+          <label>관심 상품</label>
+          <div class="option-grid">
+            <label class="option-card">
+              <input type="radio" name="product" value="STAY 19RB(19평 이동식 주택)" required />
+              <span>STAY 19RB(19평 이동식 주택)</span>
+            </label>
+            <label class="option-card">
+              <input type="radio" name="product" value="STAY 16GB(16평 이동식 주택)" />
+              <span>STAY 16GB(16평 이동식 주택)</span>
+            </label>
+            <label class="option-card">
+              <input type="radio" name="product" value="CUBE-G 10W(스크린 골프)" />
+              <span>CUBE-G 10W(스크린 골프)</span>
+            </label>
+            <label class="option-card">
+              <input type="radio" name="product" value="FOREST-P 10W(체류형쉼터)" />
+              <span>FOREST-P 10W(체류형쉼터)</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="field">
+          <label>건축 예정 시기</label>
+          <div class="option-grid">
+            <label class="option-card">
+              <input type="radio" name="period" value="1개월 이내" required />
+              <span>1개월 이내</span>
+            </label>
+            <label class="option-card">
+              <input type="radio" name="period" value="3개월 이내" />
+              <span>3개월 이내</span>
+            </label>
+            <label class="option-card">
+              <input type="radio" name="period" value="6개월 이내" />
+              <span>6개월 이내</span>
+            </label>
+            <label class="option-card">
+              <input type="radio" name="period" value="미정" />
+              <span>미정</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="field">
+          <label>토지 보유 여부</label>
+          <div class="option-grid">
+            <label class="option-card">
+              <input type="radio" name="land" value="있음" required />
+              <span>있음</span>
+            </label>
+            <label class="option-card">
+              <input type="radio" name="land" value="없음" />
+              <span>없음</span>
+            </label>
+            <label class="option-card">
+              <input type="radio" name="land" value="매입 예정" />
+              <span>매입 예정</span>
+            </label>
+            <label class="option-card">
+              <input type="radio" name="land" value="상담 필요" />
+              <span>상담 필요</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="memo">메모 <small style="font-weight:400;color:#777;">선택</small></label>
+          <textarea id="memo" name="memo" rows="3" placeholder="담당 영업사원이 있다면 작성해 주세요."></textarea>
+        </div>
+
+        <label class="agree">
+          <input type="checkbox" name="agree" required />
+          <span>개인정보 수집 및 상담 연락에 동의합니다. 입력하신 정보는 상담 안내 목적으로만 사용됩니다.</span>
+        </label>
+
+        <button type="submit">혜택 신청하기</button>
+      </form>
+
+      <div id="errorBox" class="error-box"></div>
+
+      <div id="successBox" class="success">
+        <div class="success-title">
+          등록이 완료되었습니다.<br />사은품 수령을 위해 이 화면을 직원에게 보여주세요.
+        </div>
+
+        <div class="gift-zone">
+          <div id="staffPhone" class="phone">-</div>
+          <button id="giftBtn" type="button" class="gift-btn">사은품 수령하기</button>
+          <div id="giftHint" class="gift-hint">현장 직원이 확인 후 위 버튼을 눌러주세요.</div>
+          <div id="giftTime" class="gift-time"></div>
+          <button id="resetBtn" type="button" class="reset-btn" style="display:none;">새 고객 등록하기</button>
+        </div>
+
+        <div class="success-gift">
+          🎁 DB 작성 고객 <span class="em">2만원 상당 구름깔창</span> 증정
+        </div>
+
+        <div class="success-benefits">
+          <span class="b-title">📌 박람회 계약 특별혜택</span>
+          <ul>
+            <li>19평 모델 계약 시 <span class="hl">800만원 상당 가전 패키지</span></li>
+            <li>16평 모델 계약 시 <span class="hl">500만원 상당 가전 패키지</span></li>
+            <li>패시브 목조 모델 계약 시 <span class="hl">500만원 상당 혜택</span></li>
+            <li>노래방·영화·스크린 골프 모델 계약 시 <span class="hl">600만원 상당 혜택</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <p class="notice">
+        ※ 정확한 상담을 위해 연락처를 정확히 입력해주세요.
+      </p>
+    </section>
+  </main>
+
+  <script>
+    // ============================================================
+    // CONFIG  운영 환경에 맞게 채워주세요
+    //   - SUPABASE_URL/ANON_KEY 가 비어있으면 기존 n8n 웹훅만 사용
+    //   - 둘 다 채우면 Supabase 가 진실 원본
+    //     (휴대폰 정규화 / 중복 차단 / 사은품 수령 처리)
+    // ============================================================
+    const CONFIG = {
+      SUPABASE_URL: 'https://cyftcliclwmdpblsebbe.supabase.co',
+      SUPABASE_ANON_KEY: 'sb_publishable_m0yrlNOXjFyPGLBoPJEMxg_omRXwiWH',
+      WEBHOOK_URL: 'https://actorjoon0001.app.n8n.cloud/webhook/d1f9c787-817d-4dd1-b315-a66f2cf85e22'
+    };
+
+    const form       = document.getElementById('fairForm');
+    const successBox = document.getElementById('successBox');
+    const errorBox   = document.getElementById('errorBox');
+    const submitBtn  = form.querySelector('button[type=submit]');
+    const phoneInput = document.getElementById('phone');
+    const giftBtn    = document.getElementById('giftBtn');
+    const giftHint   = document.getElementById('giftHint');
+    const giftTime   = document.getElementById('giftTime');
+    const staffPhone = document.getElementById('staffPhone');
+    const resetBtn   = document.getElementById('resetBtn');
+
+    // 마지막 등록 결과 (새로고침 후 복원)
+    let currentRecord = null; // { id, token, phone_norm, gift_status, gift_received_at }
+
+    // 미리보기
+    if (new URLSearchParams(location.search).get('preview') === 'success') {
+      form.style.display = 'none';
+      successBox.style.display = 'block';
+      currentRecord = { id: 0, token: 'preview', phone_norm: '01000000000', gift_status: 'pending' };
+      renderGiftZone();
+    }
+
+    // ===== 휴대폰 입력 자동 정리 =====
+    phoneInput.addEventListener('input', () => {
+      const d = normalizePhone(phoneInput.value);
+      if (d.length <= 3) phoneInput.value = d;
+      else if (d.length <= 7) phoneInput.value = `${d.slice(0,3)}-${d.slice(3)}`;
+      else phoneInput.value = `${d.slice(0,3)}-${d.slice(3,7)}-${d.slice(7,11)}`;
+    });
+
+    function normalizePhone(v) {
+      // 010-1234-5678 / 01012345678 / 010 1234 5678 → 01012345678
+      return String(v || '').replace(/[^0-9]/g, '').slice(0, 11);
+    }
+    function isValidPhone(norm) { return /^01[016789]\d{7,8}$/.test(norm); }
+    function fmtPhone(norm) {
+      if (!norm) return '-';
+      if (norm.length === 11) return `${norm.slice(0,3)}-${norm.slice(3,7)}-${norm.slice(7)}`;
+      if (norm.length === 10) return `${norm.slice(0,3)}-${norm.slice(3,6)}-${norm.slice(6)}`;
+      return norm;
+    }
+    function fmtTime(iso) {
+      if (!iso) return '';
+      const d = new Date(iso);
+      const pad = (n) => String(n).padStart(2,'0');
+      return `${d.getFullYear()}.${pad(d.getMonth()+1)}.${pad(d.getDate())} ${pad(d.getHours())}:${pad(d.getMinutes())}`;
+    }
+
+    function showError(msg) {
+      errorBox.textContent = msg;
+      errorBox.style.display = 'block';
+      errorBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+    function hideError() { errorBox.style.display = 'none'; errorBox.textContent = ''; }
+
+    function getGrade(period, land) {
+      if ((period === '1개월 이내' || period === '3개월 이내') && land === '있음') return 'A급';
+      if (land === '있음' || period === '6개월 이내') return 'B급';
+      return 'C급';
+    }
+
+    // ===== 새로고침 안전: 등록 결과를 localStorage 에 보관 =====
+    const STORE_KEY = 'seum_qr_record';
+    function saveRecord(r) { localStorage.setItem(STORE_KEY, JSON.stringify(r)); }
+    function loadRecord()  { try { return JSON.parse(localStorage.getItem(STORE_KEY) || 'null'); } catch { return null; } }
+
+    function newToken() {
+      return (crypto.randomUUID && crypto.randomUUID()) ||
+             (Date.now() + '-' + Math.random().toString(16).slice(2));
+    }
+
+    // ===== Supabase RPC =====
+    async function rpc(name, body) {
+      const res = await fetch(`${CONFIG.SUPABASE_URL}/rest/v1/rpc/${name}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'apikey': CONFIG.SUPABASE_ANON_KEY,
+          'Authorization': `Bearer ${CONFIG.SUPABASE_ANON_KEY}`
+        },
+        body: JSON.stringify(body)
+      });
+      if (!res.ok) throw new Error(`Supabase HTTP ${res.status}`);
+      return res.json();
+    }
+    const supabaseEnabled = () => !!(CONFIG.SUPABASE_URL && CONFIG.SUPABASE_ANON_KEY);
+
+    // ===== 사은품 수령 영역 렌더링 =====
+    function renderGiftZone() {
+      if (!currentRecord) return;
+      staffPhone.textContent = fmtPhone(currentRecord.phone_norm);
+      if (currentRecord.gift_status === 'completed') {
+        giftBtn.disabled = true;
+        giftBtn.textContent = '✅ 사은품 수령 완료';
+        giftHint.textContent = '사은품 수령이 완료되었습니다.';
+        giftTime.textContent = currentRecord.gift_received_at
+          ? `처리시간: ${fmtTime(currentRecord.gift_received_at)}` : '';
+        resetBtn.style.display = 'block';
+      } else {
+        giftBtn.disabled = false;
+        giftBtn.textContent = '사은품 수령하기';
+        giftHint.textContent = '현장 직원이 확인 후 위 버튼을 눌러주세요.';
+        giftTime.textContent = '';
+        resetBtn.style.display = 'none';
+      }
+    }
+
+    // ===== 사은품 수령 버튼 =====
+    let giftClicking = false;
+    giftBtn.addEventListener('click', async () => {
+      if (giftClicking) return;
+      if (!currentRecord || currentRecord.gift_status === 'completed') return;
+      giftClicking = true;
+      giftBtn.disabled = true;
+      giftBtn.textContent = '처리 중...';
+
+      try {
+        if (supabaseEnabled() && currentRecord.id) {
+          const r = await rpc('mark_gift_received', {
+            p_participant_id: currentRecord.id,
+            p_client_token:   currentRecord.token
+          });
+          if (r && r.ok) {
+            currentRecord.gift_status = 'completed';
+            currentRecord.gift_received_at = r.gift_received_at || new Date().toISOString();
+          } else {
+            // 토큰 불일치 등 → 그래도 화면 잠금 (현장에서 임의 해제 방지)
+            currentRecord.gift_status = 'completed';
+            currentRecord.gift_received_at = new Date().toISOString();
+          }
+        } else {
+          // Supabase 미설정 환경 (오프라인 미리보기/단독 운영) — 화면만 잠금
+          currentRecord.gift_status = 'completed';
+          currentRecord.gift_received_at = new Date().toISOString();
+        }
+        saveRecord(currentRecord);
+        renderGiftZone();
+      } catch (err) {
+        console.error('수령 처리 실패:', err);
+        giftBtn.disabled = false;
+        giftBtn.textContent = '사은품 수령하기';
+        alert('수령 처리 중 오류가 발생했습니다. 다시 시도해 주세요.');
+      } finally {
+        giftClicking = false;
+      }
+    });
+
+    // ===== 폼 제출 =====
+    let submitting = false;
+    form.addEventListener('submit', async function (e) {
+      e.preventDefault();
+      if (submitting) return;
+      hideError();
+
+      const fd = new FormData(form);
+      const phoneRaw  = fd.get('phone');
+      const phoneNorm = normalizePhone(phoneRaw);
+
+      if (!isValidPhone(phoneNorm)) {
+        showError('휴대폰 번호 형식을 확인해 주세요. (예: 010-1234-5678)');
+        return;
+      }
+
+      submitting = true;
+      submitBtn.disabled = true;
+      submitBtn.textContent = '신청 처리 중...';
+
+      const grade = getGrade(fd.get('period'), fd.get('land'));
+      const token = newToken();
+
+      let registered = null; // { id, gift_status, phone_norm }
+      let blockReason = null;
+
+      if (supabaseEnabled()) {
+        try {
+          const r = await rpc('register_participant', {
+            p_name: fd.get('name'),
+            p_phone: phoneRaw,
+            p_product: fd.get('product'),
+            p_period: fd.get('period'),
+            p_land: fd.get('land'),
+            p_memo: fd.get('memo'),
+            p_grade: grade,
+            p_client_token: token
+          });
+          if (r && r.ok) {
+            registered = {
+              id: r.participant_id,
+              gift_status: r.gift_status || 'pending',
+              phone_norm: r.phone_normalized || phoneNorm,
+              gift_received_at: null
+            };
+          } else if (r && r.reason === 'ALREADY_RECEIVED') {
+            blockReason = 'ALREADY_RECEIVED';
+          } else if (r && r.reason === 'ALREADY_REGISTERED') {
+            blockReason = 'ALREADY_REGISTERED';
+          } else if (r && r.reason === 'INVALID_PHONE') {
+            blockReason = 'INVALID_PHONE';
+          }
+        } catch (err) {
+          console.error('Supabase 등록 실패:', err);
+        }
+      }
+
+      if (blockReason === 'ALREADY_RECEIVED') {
+        submitBtn.disabled = false;
+        submitBtn.textContent = '혜택 신청하기';
+        submitting = false;
+        showError('이미 사은품을 수령한 번호입니다.');
+        return;
+      }
+      if (blockReason === 'ALREADY_REGISTERED') {
+        submitBtn.disabled = false;
+        submitBtn.textContent = '혜택 신청하기';
+        submitting = false;
+        showError('이미 등록된 번호입니다. 먼저 등록한 화면에서 사은품을 수령해 주세요.');
+        return;
+      }
+      if (blockReason === 'INVALID_PHONE') {
+        submitBtn.disabled = false;
+        submitBtn.textContent = '혜택 신청하기';
+        submitting = false;
+        showError('휴대폰 번호 형식을 확인해 주세요.');
+        return;
+      }
+
+      // Supabase 비활성화 환경에서는 로컬 레코드만 만들어 흐름 유지
+      if (!registered) {
+        registered = { id: 0, gift_status: 'pending', phone_norm: phoneNorm, gift_received_at: null };
+      }
+
+      currentRecord = { ...registered, token };
+      saveRecord(currentRecord);
+
+      // 기존 n8n 웹훅 호환 (CRM 연동)
+      try {
+        await fetch(CONFIG.WEBHOOK_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            created_at: new Date().toISOString(),
+            name: fd.get('name'),
+            phone: phoneRaw,
+            phone_normalized: phoneNorm,
+            product: fd.get('product'),
+            period: fd.get('period'),
+            land: fd.get('land'),
+            memo: fd.get('memo'),
+            source: '박람회 QR',
+            gift_status: 'pending',
+            grade,
+            client_token: token,
+            participant_id: currentRecord.id || null
+          })
+        });
+      } catch (err) {
+        console.error('웹훅 전송 실패:', err);
+      }
+
+      submitting = false;
+      form.style.display = 'none';
+      successBox.style.display = 'block';
+      renderGiftZone();
+    });
+
+    // ===== 새 고객 등록 (직원이 수령 완료 후 누름) =====
+    resetBtn.addEventListener('click', () => {
+      localStorage.removeItem(STORE_KEY);
+      currentRecord = null;
+      form.reset();
+      successBox.style.display = 'none';
+      hideError();
+      submitBtn.disabled = false;
+      submitBtn.textContent = '혜택 신청하기';
+      form.style.display = 'block';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // ===== 새로고침 시 이전 등록 화면 복원 =====
+    //  - 미수령 상태(pending): 화면 유지 → 직원이 마저 처리
+    //  - 수령 완료(completed): 1시간 지나면 자동으로 폼 화면으로 복귀
+    //                          (현장에서 다음 고객이 바로 사용 가능)
+    (function restoreOnLoad() {
+      const r = loadRecord();
+      if (!r || !r.token) return;
+      if (r.gift_status === 'completed' && r.gift_received_at) {
+        const ageMs = Date.now() - new Date(r.gift_received_at).getTime();
+        if (ageMs > 60 * 60 * 1000) {
+          localStorage.removeItem(STORE_KEY);
+          return;
+        }
+      }
+      currentRecord = r;
+      form.style.display = 'none';
+      successBox.style.display = 'block';
+      renderGiftZone();
+    })();
+  </script>
+</body>
+</html>
