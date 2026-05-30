@@ -144,6 +144,29 @@
       font-weight: 700;
     }
 
+    .hero-gifts {
+      align-items: start;
+    }
+    .gift-card {
+      margin: 0;
+    }
+    .gift-card .gift-tag {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 12px;
+      font-weight: 800;
+      color: #ffd84d;
+      text-align: center;
+    }
+    .gift-card img {
+      display: block;
+      width: 100%;
+      height: auto;
+      border-radius: 12px;
+      background: #fff;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.18);
+    }
+
     .hero-gift {
       position: relative;
       margin-top: 14px;
@@ -517,19 +540,15 @@
         박람회 현장 계약 시 <strong>프리미엄 가전</strong> 증정
       </p>
 
-      <div class="hero-grid">
-        <div class="hero-card">
-          <span class="num">STAY</span>
-          <p class="ct">STAY 모델 계약 시</p>
-          <p class="ca">가전 택 1 증정</p>
-          <p class="cd">TV · 세탁기 · 냉장고 · 빔프로젝터</p>
-        </div>
-        <div class="hero-card">
-          <span class="num">FOREST</span>
-          <p class="ct">FOREST 모델 계약 시</p>
-          <p class="ca">가전 택 1 증정</p>
-          <p class="cd">로봇청소기 · 공기청정기</p>
-        </div>
+      <div class="hero-grid hero-gifts">
+        <figure class="gift-card">
+          <span class="gift-tag">STAY 모델 계약 시</span>
+          <img src="images/gift-stay.jpg" alt="STAY 모델 계약자 선물 - TV·세탁기·냉장고·빔프로젝터 중 택1" loading="lazy" />
+        </figure>
+        <figure class="gift-card">
+          <span class="gift-tag">FOREST 모델 계약 시</span>
+          <img src="images/gift-forest.jpg" alt="FOREST 모델 계약자 선물 - 로봇청소기·공기청정기 중 택1" loading="lazy" />
+        </figure>
       </div>
 
       <div class="hero-gift">
