@@ -251,6 +251,35 @@
       box-shadow: 0 4px 14px rgba(255, 77, 141, 0.35);
     }
 
+    .product-card span {
+      flex-direction: column;
+      align-items: stretch;
+      padding: 0;
+      min-height: 0;
+      overflow: hidden;
+    }
+    .product-card img {
+      display: block;
+      width: 100%;
+      height: 96px;
+      object-fit: cover;
+      background: #f0e9f6;
+    }
+    .product-card em {
+      display: block;
+      padding: 11px 8px;
+      font-style: normal;
+      color: #333;
+    }
+    .product-card input:checked + span {
+      background: #fff;
+      box-shadow: 0 6px 16px rgba(255, 77, 141, 0.4);
+    }
+    .product-card input:checked + span em {
+      background: linear-gradient(135deg, #6a1b8c, #ff4d8d);
+      color: #fff;
+    }
+
     .agree {
       display: flex;
       gap: 10px;
@@ -542,21 +571,33 @@
         <div class="field">
           <label>관심 상품</label>
           <div class="option-grid">
-            <label class="option-card">
+            <label class="option-card product-card">
               <input type="radio" name="product" value="STAY 16DG" required />
-              <span>STAY 16DG</span>
+              <span>
+                <img src="images/model-stay16dg.jpg" alt="STAY 16DG" loading="lazy" />
+                <em>STAY 16DG</em>
+              </span>
             </label>
-            <label class="option-card">
+            <label class="option-card product-card">
               <input type="radio" name="product" value="STAY 20WB" />
-              <span>STAY 20WB</span>
+              <span>
+                <img src="images/model-stay20wb.jpg" alt="STAY 20WB" loading="lazy" />
+                <em>STAY 20WB</em>
+              </span>
             </label>
-            <label class="option-card">
+            <label class="option-card product-card">
               <input type="radio" name="product" value="FOREST 10WB" />
-              <span>FOREST 10WB</span>
+              <span>
+                <img src="images/model-forest10wb.jpg" alt="FOREST 10WB" loading="lazy" />
+                <em>FOREST 10WB</em>
+              </span>
             </label>
-            <label class="option-card">
+            <label class="option-card product-card">
               <input type="radio" name="product" value="FOREST 10G" />
-              <span>FOREST 10G</span>
+              <span>
+                <img src="images/model-forest10g.jpg" alt="FOREST 10G" loading="lazy" />
+                <em>FOREST 10G</em>
+              </span>
             </label>
           </div>
         </div>
